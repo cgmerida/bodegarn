@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    return view('home');
+    return view('admin.dashboard.index');
 });
 
 Auth::routes();
@@ -24,5 +24,12 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', 'UserController');
     Route::resource('roles', 'RoleController');
+    Route::resource('projects', 'ProjectController');
+    Route::resource('materials', 'MaterialController');
+    Route::put('materials/{material}/add', 'MaterialController@add')->name('materials.add');
+    Route::get('projects/materials/assign', 'ProjectController@getAssign')->name('projects.assign');
+    Route::post('projects/{project}/materials/assign', 'ProjectController@assign');
+
+
     Route::view('admin', 'admin.dashboard.index')->name('admin.dash');
 });

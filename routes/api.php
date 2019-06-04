@@ -30,3 +30,26 @@ Route::get('roles', function () {
         ->rawColumns(['actions'])
         ->toJson();
 });
+
+Route::get('projects', function () {
+    return datatables(App\Project::all())
+        ->addColumn('actions', 'projects.partials.actions')
+        ->rawColumns(['actions'])
+        ->toJson();
+});
+
+Route::get('materials', function () {
+    return datatables(App\Material::all())
+        ->addColumn('actions', 'materials.partials.actions')
+        ->setRowClass(function ($material) {
+            return $material->stock <= $material->min ? 'alert-danger' : 
+            ($material->stock > $material->min && $material->stock <= ( $material->min + round($material->min / 2)) ?
+            'alert-warning' : '');
+        })
+        ->rawColumns(['actions'])
+        ->toJson();
+});
+
+Route::get('materials/api', function () {
+    return App\Material::select('id', 'name')->get();
+});
