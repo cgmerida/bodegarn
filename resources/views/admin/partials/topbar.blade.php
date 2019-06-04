@@ -13,10 +13,47 @@
                 </a>
             </li>
             <li class="search-input">
-                <input class="form-control" type="text" placeholder="Search...">
+                <input class="form-control" type="text" placeholder="Buscar...">
             </li>
         </ul>
         <ul class="nav-right">
+            <li class="notifications dropdown">
+                <span class="counter bgc-red">{{ App\Material::whereRaw('stock <= min')->count() }}</span> 
+                <a href="" class="dropdown-toggle no-after" data-toggle="dropdown">
+                    <i class="ti-bell"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="pX-20 pY-15 bdB"><i class="ti-bell pR-10"></i> 
+                        <span class="fsz-sm fw-600 c-grey-900">Notificaciones</span>
+                    </li>
+                    @foreach (App\Material::whereRaw('stock <= min')->select('name')->limit(3)->get() as $material)
+                        <li>
+                            <ul class="ovY-a pos-r scrollable lis-n p-0 m-0 fsz-sm ps">
+                                <li>
+                                    <a href="" class="peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100">
+                                        <div class="peer peer-greed">
+                                            <span>
+                                                <span class="fw-500">{{ $material->name }}</span>
+                                                <span class="c-grey-600">
+                                                    ha alcanzado el <span class="text-dark">minimo</span>
+                                                    de stock
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endforeach 
+                    <li class="pX-20 pY-15 ta-c bdT">
+                        <span>
+                            <a href="{{ route('materials.index') }}" class="c-grey-600 cH-blue fsz-sm td-n">
+                                Ver todas las notificaciones <i class="ti-angle-right fsz-xs mL-10"></i>
+                            </a>
+                        </span>
+                    </li>
+                </ul>
+            </li>
             <li class="dropdown">
                 <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
                     <div class="peer mR-10">
