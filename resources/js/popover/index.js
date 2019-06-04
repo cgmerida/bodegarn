@@ -25,5 +25,8 @@ export default (function() {
     // @Tooltips
     // ------------------------------------------------------
 
-    $('[data-toggle="tooltip"]').tooltip();
+    $('body').tooltip({
+        trigger: 'hover',
+        selector: '[data-toggle="tooltip"]'
+    });
 })();
