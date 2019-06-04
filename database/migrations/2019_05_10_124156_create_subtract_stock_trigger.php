@@ -14,7 +14,6 @@ class CreateSubtractStockTrigger extends Migration
     public function up()
     {
         DB::unprepared( "
-        DELIMITER //
         CREATE TRIGGER subtract_stock
         AFTER INSERT
         ON material_project FOR EACH ROW
@@ -24,9 +23,7 @@ class CreateSubtractStockTrigger extends Migration
         UPDATE materials SET stock = stock - new.amount
         WHERE id = new.material_id;
 
-        END;
-        //
-        DELIMITER ;
+        END
         ");
     }
 
@@ -37,6 +34,6 @@ class CreateSubtractStockTrigger extends Migration
      */
     public function down()
     {
-        DB::unprepared('DROP TRIGGER `subtract_stock`');
+        DB::unprepared('DROP TRIGGER subtract_stock');
     }
 }
