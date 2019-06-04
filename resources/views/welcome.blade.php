@@ -57,6 +57,7 @@
                 font-size: 6em;
                 color: #fff;
                 font-weight: 800;
+                text-shadow: -1.5px 0 2px #000, 0 1.5px 2px #000, 1.5px 0 2px #000, 0 -1.5px 2px #000;
             }
 
             .links > a {
