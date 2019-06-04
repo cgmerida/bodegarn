@@ -13,14 +13,19 @@ class CreateSubtractStockTrigger extends Migration
      */
     public function up()
     {
-        DB::unprepared("
-        delimiter $ 
-        CREATE OR REPLACE TRIGGER subtract_stock
-        AFTER INSERT ON material_project FOR EACH ROW
+        DB::unprepared( "
+        DELIMITER //
+        CREATE TRIGGER subtract_stock
+        AFTER INSERT
+        ON material_project FOR EACH ROW
+
         BEGIN
-            UPDATE materials SET stock = stock - NEW.amount
-            WHERE id = NEW.material_id; 
-        END $
+
+        UPDATE materials SET stock = stock - new.amount
+        WHERE id = new.material_id;
+
+        END;
+        //
         DELIMITER ;
         ");
     }
