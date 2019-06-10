@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Material extends Model
 {
     protected $fillable = [
-        'code', 'group', 'name',
+        'code', 'name',
         'measure', 'stock', 'min',
     ];
 
@@ -19,8 +19,8 @@ class Material extends Model
     public static function rules()
     {
         return[
-            'code' => 'required|string|max:255',
-            'group' => 'required|numeric|min:0',
+            'code' => 'required|string|unique:materials,code|max:255',
+            // 'group' => 'required|numeric|min:0',
             'name' => 'required|string|max:255',
             'measure' => 'required|string|max:255',
             'stock' => 'required|numeric|min:0',

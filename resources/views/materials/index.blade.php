@@ -23,7 +23,7 @@
             <thead>
                 <tr>
                     <th>Código</th>
-                    <th>Grupo</th>
+                    {{-- <th>Grupo</th> --}}
                     <th>Nombre</th>
                     <th>Unidad de Medida</th>
                     <th>Existencia Física</th>
@@ -35,7 +35,7 @@
             <tfoot>
                 <tr>
                     <th>Código</th>
-                    <th>Grupo</th>
+                    {{-- <th>Grupo</th> --}}
                     <th>Nombre</th>
                     <th>Unidad de Medida</th>
                     <th>Existencia Física</th>
@@ -59,13 +59,14 @@
                 ajax: '/api/materials',
                 columns: [
                     {data: 'code'},
-                    {data: 'group'},
-                    {data: 'name'},
+                    // {data: 'group'},
+                    {data: 'name', order: 'asc'},
                     {data: 'measure'},
                     {data: 'stock'},
-                    {data: 'min'},
-                    {data: 'actions'}
-                ]
+                    {data: 'min', orderable: false, searchable: false},
+                    {data: 'actions', orderable: false, searchable: false}
+                ],
+                order: [[1, 'asc']]
             });
         });
 

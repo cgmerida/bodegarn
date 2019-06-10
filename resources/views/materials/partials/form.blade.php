@@ -2,8 +2,8 @@
 	<div class="col-sm-8">
 		<div class="bgc-white p-20 bd">
 			{!! Form::myInput('text', 'code', 'Codigo del Material') !!}
-			
-			{!! Form::myInput('number', 'group', 'Grupo') !!}
+{{-- 			
+			{!! Form::myInput('number', 'group', 'Grupo') !!} --}}
 			
 			{!! Form::myInput('text', 'name', 'Nombre del Material') !!}
 
